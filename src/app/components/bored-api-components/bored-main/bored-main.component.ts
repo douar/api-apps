@@ -71,7 +71,7 @@ export class BoredMainComponent implements OnDestroy{
 
   getActivityByParticipantCountClick() {
     console.log('activity by participant clicked', this.participantCount)
-    this.boredService.getActivityByParticipantCount(5)
+    this.boredService.getActivityByParticipantCount(this.participantCount)
     this.subActivityByParticipantCount = this.boredService.$activityByParticipantCount.subscribe(activity =>{
       this.activityByParticipantCount = <IBoredActivity>activity
       console.log(this.activityByParticipantCount)
