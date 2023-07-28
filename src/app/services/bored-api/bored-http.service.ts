@@ -11,7 +11,6 @@ export class BoredHttpService {
   constructor(private httpClient: HttpClient) { }
 
   getRandomActivity(){
-    console.log('bored http accessed')
     return this.httpClient.get('https://www.boredapi.com/api/activity/') as Observable<IBoredActivity>
   }
 }

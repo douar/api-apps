@@ -16,13 +16,11 @@ export class BoredServiceService {
     return this.boredHttpClient.getRandomActivity().pipe(first()).subscribe({
       next: activity => {
         this.$randomActivity.next(<IBoredActivity>activity)
-        console.log(this.$randomActivity)
       },
       error: err => {
         console.log(err)
         alert('Unable to get activity')
       }
     })
-    console.log('bored service accessed')
   }
 }

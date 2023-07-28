@@ -16,11 +16,9 @@ export class BoredMainComponent implements OnDestroy{
   constructor(private boredService: BoredServiceService) {}
 
   getRandomActivity() {
-    console.log('button clicked')
     this.boredService.getRandomActivity()
     this.subRandomActivity = this.boredService.$randomActivity.subscribe(activity => {
       this.randomActivity = activity
-      console.log(this.randomActivity)
     })
   }
 
