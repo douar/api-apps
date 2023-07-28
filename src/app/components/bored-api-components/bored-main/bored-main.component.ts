@@ -84,5 +84,6 @@ export class BoredMainComponent implements OnDestroy{
 
   getActivityByPriceClick() {
     console.log('get activity by price clicked')
+    this.boredService.getActivityByPrice()
   }
 }

@@ -56,4 +56,8 @@ export class BoredServiceService {
       }
     })
   }
+
+  getActivityByPrice() {
+    console.log('get activity by price service')
+  }
 }
