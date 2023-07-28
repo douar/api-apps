@@ -11,14 +11,22 @@ import {Subscription} from "rxjs";
 export class BoredMainComponent implements OnDestroy{
 
   subRandomActivity!: Subscription;
-  randomActivity: IBoredActivity | null = null;
+  randomActivity: IBoredActivity = {
+    activity: '',
+    type: '',
+    participants: 0,
+    price: 0,
+    link: '',
+    key: '',
+    accessibility: 0
+  }
 
   constructor(private boredService: BoredServiceService) {}
 
   getRandomActivity() {
     this.boredService.getRandomActivity()
     this.subRandomActivity = this.boredService.$randomActivity.subscribe(activity => {
-      this.randomActivity = activity
+      this.randomActivity = activity!
     })
   }
 
