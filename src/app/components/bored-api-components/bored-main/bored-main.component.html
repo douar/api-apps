@@ -11,3 +11,11 @@
 <hr>
 
 <button (click)="getActivityByTypeClick()">Get Activity by Type</button>
+
+<div *ngIf="activityByType.activity !== ''">
+  {{activityByType | json}}
+</div>
+
+<div>
+  {{activityByType.activity}}
+</div>

@@ -9,6 +9,7 @@ import {IBoredActivity} from "../../_interfaces/IBoredActivity";
 export class BoredServiceService {
 
   $randomActivity = new BehaviorSubject<IBoredActivity | null>(null)
+  $activityByType = new BehaviorSubject<IBoredActivity | null>(null)
 
   constructor(private boredHttpClient: BoredHttpService) { }
 
@@ -19,13 +20,22 @@ export class BoredServiceService {
       },
       error: err => {
         console.log(err)
-        alert('Unable to get activity')
+        alert('Unable to get random activity')
       }
     })
   }
 
   getActivityByType(activityType: string){
     console.log('bored service activity by type accessed')
-    this.boredHttpClient.getActivityByType(activityType)
+    this.boredHttpClient.getActivityByType(activityType).pipe(first()).subscribe({
+      next: activity => {
+        this.$activityByType.next(<IBoredActivity>activity)
+        console.log(this.$activityByType.getValue())
+      },
+      error: err => {
+        console.error(err)
+        alert('Unable to get activity by type')
+      }
+    })
   }
 }
