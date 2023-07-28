@@ -1,9 +1,13 @@
 <button (click)="getRandomActivity()">Get Random Activity</button>
 
-<div>
+<div *ngIf="randomActivity.activity !== ''">
   {{randomActivity | json}}
 </div>
 
 <div>
   {{randomActivity.activity}}
 </div>
+
+<hr>
+
+<button (click)="getActivityByType()">Get Activity by Type</button>
