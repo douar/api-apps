@@ -10,12 +10,17 @@
 
 <hr>
 
+<mat-form-field>
+  <mat-label>Select Activity Type</mat-label>
+  <mat-select [(value)]="selectedActivityType">
+    <mat-option *ngFor="let opt of activityTypeList" [value]="opt">
+      {{opt}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
 <button (click)="getActivityByTypeClick()">Get Activity by Type</button>
 
 <div *ngIf="activityByType.activity !== ''">
   {{activityByType | json}}
-</div>
-
-<div>
-  {{activityByType.activity}}
 </div>

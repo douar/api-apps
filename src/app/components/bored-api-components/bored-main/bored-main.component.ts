@@ -21,7 +21,7 @@ export class BoredMainComponent implements OnDestroy{
     accessibility: 0
   }
 
-  activityType: string[] = ["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"]
+  activityTypeList: string[] = ["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"]
   subActivityByType!: Subscription;
   activityByType: IBoredActivity = {
     activity: '',
@@ -32,6 +32,7 @@ export class BoredMainComponent implements OnDestroy{
     key: '',
     accessibility: 0
   }
+  selectedActivityType!: string;
 
   constructor(private boredService: BoredServiceService) {}
 
@@ -43,13 +44,15 @@ export class BoredMainComponent implements OnDestroy{
   }
 
   getActivityByTypeClick() {
-    console.log('activity by type clicked')
-    this.boredService.getActivityByType(this.activityType[1])
+    console.log('activity by type clicked', this.selectedActivityType)
+    if(this.selectedActivityType == null || undefined){
+      return alert('Please select an activity type for this function')
+    }
+    this.boredService.getActivityByType(this.activityTypeList[1])
     this.subActivityByType =this.boredService.$activityByType.subscribe(activity => {
       this.activityByType = <IBoredActivity>activity
       console.log(this.activityByType)
     })
-
   }
 
   ngOnDestroy() {
