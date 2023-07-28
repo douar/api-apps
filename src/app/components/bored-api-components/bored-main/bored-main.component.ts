@@ -58,4 +58,7 @@ export class BoredMainComponent implements OnDestroy{
     this.subActivityByType.unsubscribe()
   }
 
+  getActivityByParticipantCountClick() {
+    console.log('activity by participant clicked')
+  }
 }
