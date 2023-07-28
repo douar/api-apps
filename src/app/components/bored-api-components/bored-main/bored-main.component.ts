@@ -1,7 +1,7 @@
 import {Component, OnDestroy} from '@angular/core';
 import {IBoredActivity} from "../../../_interfaces/IBoredActivity";
 import {BoredServiceService} from "../../../services/bored-api/bored-service.service";
-import {first, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-bored-main',
