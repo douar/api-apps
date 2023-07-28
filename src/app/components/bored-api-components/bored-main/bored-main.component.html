@@ -27,7 +27,7 @@
 
 <hr>
 
-<mat-form-field class="example-full-width">
+<mat-form-field>
   <input matInput placeholder="Number of Participants" type="number" [(ngModel)]="participantCount">
 </mat-form-field>
 
@@ -38,6 +38,10 @@
 </div>
 
 <hr>
+
+<mat-form-field>
+  <input matInput placeholder="Price" type="number" min="0" max="1" [(ngModel)]="price">
+</mat-form-field>
 
 <button (click)="getActivityByPriceClick()">Get Activity by Price</button>
 

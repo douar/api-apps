@@ -58,11 +58,11 @@ export class BoredServiceService {
     })
   }
 
-  getActivityByPrice() {
+  getActivityByPrice(price: number) {
     console.log('get activity by price service')
-    this.boredHttpClient.getActivityByPrice().pipe(first()).subscribe({
+    this.boredHttpClient.getActivityByPrice(price).pipe(first()).subscribe({
       next: activity => {
-        this.$activityByPrice.next(activity)
+        this.$activityByPrice.next(<IBoredActivity>activity)
         console.log(this.$activityByPrice.getValue())
       },
       error: err => {

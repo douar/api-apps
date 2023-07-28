@@ -23,8 +23,8 @@ export class BoredHttpService {
     return this.httpClient.get(`https://www.boredapi.com/api/activity?participants=${participants}`) as Observable<IBoredActivity | IBoredError>
   }
 
-  getActivityByPrice() {
+  getActivityByPrice(price: number) {
     console.log('get activity by price http')
-    return this.httpClient.get(`https://www.boredapi.com/api/activity?price=0.0`) as Observable<IBoredActivity>
+    return this.httpClient.get(`https://www.boredapi.com/api/activity?price=${price}`) as Observable<IBoredActivity | IBoredError>
   }
 }

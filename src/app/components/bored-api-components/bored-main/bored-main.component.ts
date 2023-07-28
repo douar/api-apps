@@ -56,6 +56,7 @@ export class BoredMainComponent implements OnDestroy{
     key: '',
     accessibility: 0
   }
+  price!: number;
 
   constructor(private boredService: BoredServiceService) {}
 
@@ -95,8 +96,8 @@ export class BoredMainComponent implements OnDestroy{
   }
 
   getActivityByPriceClick() {
-    console.log('get activity by price clicked')
-    this.boredService.getActivityByPrice()
+    console.log('get activity by price clicked', this.price)
+    this.boredService.getActivityByPrice(this.price)
     this.subActivityByPrice = this.boredService.$activityByPrice.subscribe(activity => {
       this.activityByPrice = <IBoredActivity>activity
       console.log(this.activityByPrice)
