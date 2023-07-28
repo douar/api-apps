@@ -48,6 +48,7 @@ export class BoredMainComponent implements OnDestroy{
   constructor(private boredService: BoredServiceService) {}
 
   getRandomActivityClick() {
+    console.log('clicked')
     this.boredService.getRandomActivity()
     this.subRandomActivity = this.boredService.$randomActivity.subscribe(activity => {
       this.randomActivity = <IBoredActivity>activity
@@ -81,4 +82,7 @@ export class BoredMainComponent implements OnDestroy{
     this.subActivityByParticipantCount.unsubscribe()
   }
 
+  getActivityByPriceClick() {
+    console.log('get activity by price clicked')
+  }
 }
