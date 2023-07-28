@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {BoredHttpService} from "./bored-http.service";
 import {BehaviorSubject, first} from "rxjs";
 import {IBoredActivity} from "../../_interfaces/IBoredActivity";
+import {IBoredError} from "../../_interfaces/IBoredError";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,9 @@ export class BoredServiceService {
 
   $randomActivity = new BehaviorSubject<IBoredActivity | null>(null)
   $activityByType = new BehaviorSubject<IBoredActivity | null>(null)
-  $activityByParticipantCount = new BehaviorSubject<IBoredActivity | null>(null)
+  $activityByParticipantCount = new BehaviorSubject<IBoredActivity | IBoredError | null>(null)
+
+  boredError: IBoredError = {error: "No activity found with the specified parameters"}
 
   constructor(private boredHttpClient: BoredHttpService) { }
 
@@ -42,12 +45,16 @@ export class BoredServiceService {
     console.log('activity by participant service', participants)
     this.boredHttpClient.getActivityByParticipantCount(participants).pipe(first()).subscribe({
       next: activity => {
-        this.$activityByParticipantCount.next(activity)
-        console.log(this.$activityByParticipantCount.getValue())
+        if(activity = this.boredError){
+          return alert(`Sorry, there are currently no activities in the database for ${participants} number of people, please choose a smaller number.`)
+        } else {
+          this.$activityByParticipantCount.next(activity)
+          console.log(this.$activityByParticipantCount.getValue())
+        }
       },
       error: err => {
         console.error(err)
-        alert('Unable to get activity: ' + err)
+        alert('Unable to get activity')
       }
     })
   }

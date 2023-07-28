@@ -71,10 +71,14 @@ export class BoredMainComponent implements OnDestroy{
 
   getActivityByParticipantCountClick() {
     console.log('activity by participant clicked', this.participantCount)
-    this.boredService.getActivityByParticipantCount(this.participantCount)
-    this.subActivityByParticipantCount = this.boredService.$activityByParticipantCount.subscribe(activity =>{
-      this.activityByParticipantCount = <IBoredActivity>activity
-      console.log(this.activityByParticipantCount)
-    })
+    if(this.participantCount == null || undefined){
+      return alert('Please enter a number first')
+    } else {
+      this.boredService.getActivityByParticipantCount(this.participantCount)
+      this.subActivityByParticipantCount = this.boredService.$activityByParticipantCount.subscribe(activity =>{
+        this.activityByParticipantCount = <IBoredActivity>activity
+        console.log(this.activityByParticipantCount)
+      })
+    }
   }
 }
