@@ -57,28 +57,28 @@ export class BoredMainComponent implements OnDestroy{
   getActivityByTypeClick() {
     if(this.selectedActivityType == null || undefined){
       return alert('Please select an activity type for this function')
+    } else {
+      this.boredService.getActivityByType(this.selectedActivityType)
+      this.subActivityByType = this.boredService.$activityByType.subscribe(activity => {
+        this.activityByType = <IBoredActivity>activity
+      })
     }
-    this.boredService.getActivityByType(this.selectedActivityType)
-    this.subActivityByType = this.boredService.$activityByType.subscribe(activity => {
-      this.activityByType = <IBoredActivity>activity
-    })
-  }
-
-  ngOnDestroy() {
-    this.subRandomActivity.unsubscribe()
-    this.subActivityByType.unsubscribe()
   }
 
   getActivityByParticipantCountClick() {
-    console.log('activity by participant clicked', this.participantCount)
     if(this.participantCount == null || undefined){
       return alert('Please enter a number first')
     } else {
       this.boredService.getActivityByParticipantCount(this.participantCount)
       this.subActivityByParticipantCount = this.boredService.$activityByParticipantCount.subscribe(activity =>{
         this.activityByParticipantCount = <IBoredActivity>activity
-        console.log(this.activityByParticipantCount)
       })
     }
   }
+  ngOnDestroy() {
+    this.subRandomActivity.unsubscribe()
+    this.subActivityByType.unsubscribe()
+    this.subActivityByParticipantCount.unsubscribe()
+  }
+
 }

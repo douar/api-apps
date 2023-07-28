@@ -42,14 +42,12 @@ export class BoredServiceService {
   }
 
   getActivityByParticipantCount(participants: number){
-    console.log('activity by participant service', participants)
     this.boredHttpClient.getActivityByParticipantCount(participants).pipe(first()).subscribe({
       next: activity => {
-        if(activity = this.boredError){
+        if(activity == this.boredError){
           return alert(`Sorry, there are currently no activities in the database for ${participants} number of people, please choose a smaller number.`)
         } else {
           this.$activityByParticipantCount.next(activity)
-          console.log(this.$activityByParticipantCount.getValue())
         }
       },
       error: err => {
