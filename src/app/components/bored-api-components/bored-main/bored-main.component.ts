@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {IBoredActivity} from "../../../_interfaces/IBoredActivity";
 
 @Component({
   selector: 'app-bored-main',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class BoredMainComponent {
 
+  randomActivity: IBoredActivity | null = null;
+
+  getRandomActivity() {
+    console.log('button clicked', this.randomActivity)
+  }
 }
