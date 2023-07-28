@@ -23,4 +23,8 @@ export class BoredServiceService {
       }
     })
   }
+
+  getActivityByType(){
+    console.log('bored service activity by type accessed')
+  }
 }

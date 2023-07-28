@@ -23,18 +23,19 @@ export class BoredMainComponent implements OnDestroy{
 
   constructor(private boredService: BoredServiceService) {}
 
-  getRandomActivity() {
+  getRandomActivityClick() {
     this.boredService.getRandomActivity()
     this.subRandomActivity = this.boredService.$randomActivity.subscribe(activity => {
       this.randomActivity = <IBoredActivity>activity
     })
   }
 
-  ngOnDestroy() {
-    this.subRandomActivity.unsubscribe()
+  getActivityByTypeClick() {
+    console.log('activity by type clicked')
+    this.boredService.getActivityByType()
   }
 
-  getActivityByType() {
-    console.log('activity by type clicked')
+  ngOnDestroy() {
+    this.subRandomActivity.unsubscribe()
   }
 }
