@@ -37,8 +37,8 @@ export class BoredServiceService {
     })
   }
 
-  getActivityByParticipantCount(){
-    console.log('activity by participant service')
-    this.boredHttpClient.getActivityByParticipantCount()
+  getActivityByParticipantCount(participants: number){
+    console.log('activity by participant service', participants)
+    this.boredHttpClient.getActivityByParticipantCount(participants)
   }
 }

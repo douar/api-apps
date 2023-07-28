@@ -34,6 +34,7 @@ export class BoredMainComponent implements OnDestroy{
   }
   selectedActivityType!: string;
 
+  participantCount!: number;
   constructor(private boredService: BoredServiceService) {}
 
   getRandomActivityClick() {
@@ -60,6 +61,6 @@ export class BoredMainComponent implements OnDestroy{
 
   getActivityByParticipantCountClick() {
     console.log('activity by participant clicked')
-    this.boredService.getActivityByParticipantCount()
+    this.boredService.getActivityByParticipantCount(1)
   }
 }
