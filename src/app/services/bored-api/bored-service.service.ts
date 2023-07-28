@@ -24,8 +24,8 @@ export class BoredServiceService {
     })
   }
 
-  getActivityByType(){
+  getActivityByType(activityType: string){
     console.log('bored service activity by type accessed')
-    this.boredHttpClient.getActivityByType()
+    this.boredHttpClient.getActivityByType(activityType)
   }
 }
