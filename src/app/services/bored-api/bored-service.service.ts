@@ -19,18 +19,16 @@ export class BoredServiceService {
         this.$randomActivity.next(<IBoredActivity>activity)
       },
       error: err => {
-        console.log(err)
+        console.error(err)
         alert('Unable to get random activity')
       }
     })
   }
 
   getActivityByType(activityType: string){
-    console.log('bored service activity by type accessed', activityType)
     this.boredHttpClient.getActivityByType(activityType).pipe(first()).subscribe({
       next: activity => {
         this.$activityByType.next(<IBoredActivity>activity)
-        console.log(this.$activityByType.getValue())
       },
       error: err => {
         console.error(err)
