@@ -22,4 +22,8 @@ export class BoredHttpService {
   getActivityByParticipantCount(participants: number){
     return this.httpClient.get(`https://www.boredapi.com/api/activity?participants=${participants}`) as Observable<IBoredActivity | IBoredError>
   }
+
+  getActivityByPrice() {
+    console.log('get activity by price http')
+  }
 }
