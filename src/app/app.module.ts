@@ -5,11 +5,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./material.module";
 import { FormsModule } from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
+import { BoredMainComponent } from './components/bored-main/bored-main.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BoredMainComponent
   ],
   imports: [
     BrowserModule,
