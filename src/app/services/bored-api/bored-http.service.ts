@@ -13,4 +13,8 @@ export class BoredHttpService {
   getRandomActivity(){
     return this.httpClient.get('https://www.boredapi.com/api/activity/') as Observable<IBoredActivity>
   }
+
+  getActivityByType(){
+    console.log('activity by type bored http accessed')
+  }
 }
