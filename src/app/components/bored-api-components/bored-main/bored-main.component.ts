@@ -48,7 +48,7 @@ export class BoredMainComponent implements OnDestroy{
     if(this.selectedActivityType == null || undefined){
       return alert('Please select an activity type for this function')
     }
-    this.boredService.getActivityByType(this.activityTypeList[1])
+    this.boredService.getActivityByType(this.selectedActivityType)
     this.subActivityByType =this.boredService.$activityByType.subscribe(activity => {
       this.activityByType = <IBoredActivity>activity
       console.log(this.activityByType)

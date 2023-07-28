@@ -26,7 +26,7 @@ export class BoredServiceService {
   }
 
   getActivityByType(activityType: string){
-    console.log('bored service activity by type accessed')
+    console.log('bored service activity by type accessed', activityType)
     this.boredHttpClient.getActivityByType(activityType).pipe(first()).subscribe({
       next: activity => {
         this.$activityByType.next(<IBoredActivity>activity)
