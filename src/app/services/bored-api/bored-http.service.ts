@@ -6,4 +6,8 @@ import { Injectable } from '@angular/core';
 export class BoredHttpService {
 
   constructor() { }
+
+  getRandomActivity(){
+    console.log('bored http accessed')
+  }
 }
