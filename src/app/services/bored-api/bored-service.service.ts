@@ -1,15 +1,27 @@
 import { Injectable } from '@angular/core';
 import {BoredHttpService} from "./bored-http.service";
+import {BehaviorSubject, first} from "rxjs";
+import {IBoredActivity} from "../../_interfaces/IBoredActivity";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoredServiceService {
 
+  $randomActivity = new BehaviorSubject<IBoredActivity | null>(null)
+
   constructor(private boredHttpClient: BoredHttpService) { }
 
   getRandomActivity() {
-    console.log('bored service accessed')
-    this.boredHttpClient.getRandomActivity();
+    this.boredHttpClient.getRandomActivity().pipe(first()).subscribe({
+      next: activity => {
+        this.$randomActivity.next(activity)
+      },
+      error: err => {
+        console.log(err)
+        alert('Unable to get activity')
+      }
+    })
+    console.log('bored service accessed', this.$randomActivity)
   }
 }
