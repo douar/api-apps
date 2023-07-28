@@ -36,4 +36,8 @@ export class BoredServiceService {
       }
     })
   }
+
+  getActivityByParticipantCount(){
+    console.log('activity by participant service')
+  }
 }

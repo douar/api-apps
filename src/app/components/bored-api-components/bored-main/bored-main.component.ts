@@ -60,5 +60,6 @@ export class BoredMainComponent implements OnDestroy{
 
   getActivityByParticipantCountClick() {
     console.log('activity by participant clicked')
+    this.boredService.getActivityByParticipantCount()
   }
 }
