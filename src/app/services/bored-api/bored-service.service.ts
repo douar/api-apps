@@ -12,6 +12,7 @@ export class BoredServiceService {
   $randomActivity = new BehaviorSubject<IBoredActivity | null>(null)
   $activityByType = new BehaviorSubject<IBoredActivity | null>(null)
   $activityByParticipantCount = new BehaviorSubject<IBoredActivity | IBoredError | null>(null)
+  $activityByPrice = new BehaviorSubject<IBoredActivity | null>(null)
 
   boredError: IBoredError = {error: "No activity found with the specified parameters"}
 
@@ -59,6 +60,15 @@ export class BoredServiceService {
 
   getActivityByPrice() {
     console.log('get activity by price service')
-    this.boredHttpClient.getActivityByPrice()
+    this.boredHttpClient.getActivityByPrice().pipe(first()).subscribe({
+      next: activity => {
+        this.$activityByPrice.next(activity)
+        console.log(this.$activityByPrice.getValue())
+      },
+      error: err => {
+        console.error(err)
+        alert('Unable to get activity')
+      }
+    })
   }
 }

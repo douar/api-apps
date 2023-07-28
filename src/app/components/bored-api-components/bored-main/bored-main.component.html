@@ -40,3 +40,7 @@
 <hr>
 
 <button (click)="getActivityByPriceClick()">Get Activity by Price</button>
+
+<div *ngIf="activityByPrice.activity !== ''">
+  {{activityByPrice | json}}
+</div>

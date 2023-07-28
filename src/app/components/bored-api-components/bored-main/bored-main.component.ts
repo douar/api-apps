@@ -21,8 +21,8 @@ export class BoredMainComponent implements OnDestroy{
     accessibility: 0
   }
 
-  activityTypeList: string[] = ["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"]
   subActivityByType!: Subscription;
+  activityTypeList: string[] = ["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"]
   activityByType: IBoredActivity = {
     activity: '',
     type: '',
@@ -34,7 +34,6 @@ export class BoredMainComponent implements OnDestroy{
   }
   selectedActivityType!: string;
 
-  participantCount!: number;
   subActivityByParticipantCount!: Subscription
   activityByParticipantCount:IBoredActivity = {
     activity: '',
@@ -45,6 +44,19 @@ export class BoredMainComponent implements OnDestroy{
     key: '',
     accessibility: 0
   }
+  participantCount!: number;
+
+  subActivityByPrice!: Subscription;
+  activityByPrice: IBoredActivity = {
+    activity: '',
+    type: '',
+    participants: 0,
+    price: 0,
+    link: '',
+    key: '',
+    accessibility: 0
+  }
+
   constructor(private boredService: BoredServiceService) {}
 
   getRandomActivityClick() {
@@ -85,5 +97,9 @@ export class BoredMainComponent implements OnDestroy{
   getActivityByPriceClick() {
     console.log('get activity by price clicked')
     this.boredService.getActivityByPrice()
+    this.subActivityByPrice = this.boredService.$activityByPrice.subscribe(activity => {
+      this.activityByPrice = <IBoredActivity>activity
+      console.log(this.activityByPrice)
+    })
   }
 }

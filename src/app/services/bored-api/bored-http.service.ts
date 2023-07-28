@@ -25,5 +25,6 @@ export class BoredHttpService {
 
   getActivityByPrice() {
     console.log('get activity by price http')
+    return this.httpClient.get(`https://www.boredapi.com/api/activity?price=0.0`) as Observable<IBoredActivity>
   }
 }
