@@ -28,3 +28,7 @@
 <hr>
 
 <button (click)="getActivityByParticipantCountClick()">Get Activity by Participant Count</button>
+
+<div *ngIf="activityByParticipantCount.activity !== ''">
+  {{activityByParticipantCount | json}}
+</div>

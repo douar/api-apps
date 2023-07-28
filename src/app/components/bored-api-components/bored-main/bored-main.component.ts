@@ -35,6 +35,16 @@ export class BoredMainComponent implements OnDestroy{
   selectedActivityType!: string;
 
   participantCount!: number;
+  subActivityByParticipantCount!: Subscription
+  activityByParticipantCount:IBoredActivity = {
+    activity: '',
+    type: '',
+    participants: 0,
+    price: 0,
+    link: '',
+    key: '',
+    accessibility: 0
+  }
   constructor(private boredService: BoredServiceService) {}
 
   getRandomActivityClick() {
@@ -49,7 +59,7 @@ export class BoredMainComponent implements OnDestroy{
       return alert('Please select an activity type for this function')
     }
     this.boredService.getActivityByType(this.selectedActivityType)
-    this.subActivityByType =this.boredService.$activityByType.subscribe(activity => {
+    this.subActivityByType = this.boredService.$activityByType.subscribe(activity => {
       this.activityByType = <IBoredActivity>activity
     })
   }
@@ -61,6 +71,10 @@ export class BoredMainComponent implements OnDestroy{
 
   getActivityByParticipantCountClick() {
     console.log('activity by participant clicked')
-    this.boredService.getActivityByParticipantCount(6)
+    this.boredService.getActivityByParticipantCount(5)
+    this.subActivityByParticipantCount = this.boredService.$activityByParticipantCount.subscribe(activity =>{
+      this.activityByParticipantCount = <IBoredActivity>activity
+      console.log(this.activityByParticipantCount)
+    })
   }
 }
