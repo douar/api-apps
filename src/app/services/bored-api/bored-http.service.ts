@@ -17,4 +17,8 @@ export class BoredHttpService {
   getActivityByType(activityType: string){
     return this.httpClient.get(`https://www.boredapi.com/api/activity?type=${activityType}`) as Observable<IBoredActivity>
   }
+
+  getActivityByParticipantCount(){
+    console.log('activity by participant http')
+  }
 }
