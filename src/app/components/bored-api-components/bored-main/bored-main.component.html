@@ -27,6 +27,10 @@
 
 <hr>
 
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Number of Participants" type="number" [(ngModel)]="participantCount">
+</mat-form-field>
+
 <button (click)="getActivityByParticipantCountClick()">Get Activity by Participant Count</button>
 
 <div *ngIf="activityByParticipantCount.activity !== ''">
