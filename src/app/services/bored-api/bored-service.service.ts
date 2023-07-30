@@ -61,8 +61,11 @@ export class BoredServiceService {
   getActivityByPrice(price: number) {
     this.boredHttpClient.getActivityByPrice(price).pipe(first()).subscribe({
       next: activity => {
-        this.$activityByPrice.next(<IBoredActivity>activity)
-        console.log(this.$activityByPrice.getValue())
+        if(activity.hasOwnProperty('error')){
+          return alert(`Sorry, there are currently no activities in the database for ${price} price, please choose a different price number.`)
+        } else {
+          this.$activityByPrice.next(<IBoredActivity>activity)
+        }
       },
       error: err => {
         console.error(err)
