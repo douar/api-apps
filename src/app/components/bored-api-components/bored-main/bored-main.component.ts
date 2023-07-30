@@ -56,7 +56,7 @@ export class BoredMainComponent implements OnDestroy{
     key: '',
     accessibility: 0
   }
-  price!: number;
+  price: number = 0;
 
   constructor(private boredService: BoredServiceService) {}
 

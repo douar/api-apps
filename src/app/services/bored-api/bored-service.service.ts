@@ -14,7 +14,7 @@ export class BoredServiceService {
   $activityByParticipantCount = new BehaviorSubject<IBoredActivity | IBoredError | null>(null)
   $activityByPrice = new BehaviorSubject<IBoredActivity | null>(null)
 
-  boredError: IBoredError = {error: "No activity found with the specified parameters"}
+  boredError: IBoredError = {error: 'No activity found with the specified parameters'}
 
   constructor(private boredHttpClient: BoredHttpService) { }
 
@@ -45,7 +45,7 @@ export class BoredServiceService {
   getActivityByParticipantCount(participants: number){
     this.boredHttpClient.getActivityByParticipantCount(participants).pipe(first()).subscribe({
       next: activity => {
-        if(activity == this.boredError){
+        if(activity.hasOwnProperty("error")){
           return alert(`Sorry, there are currently no activities in the database for ${participants} number of people, please choose a smaller number.`)
         } else {
           this.$activityByParticipantCount.next(activity)
@@ -59,7 +59,6 @@ export class BoredServiceService {
   }
 
   getActivityByPrice(price: number) {
-    console.log('get activity by price service')
     this.boredHttpClient.getActivityByPrice(price).pipe(first()).subscribe({
       next: activity => {
         this.$activityByPrice.next(<IBoredActivity>activity)

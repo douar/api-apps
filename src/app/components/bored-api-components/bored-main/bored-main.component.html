@@ -40,8 +40,18 @@
 <hr>
 
 <mat-form-field>
+  <mat-label>Enter a Number (0-1)</mat-label>
   <input matInput placeholder="Price" type="number" min="0" max="1" [(ngModel)]="price">
 </mat-form-field>
+
+<mat-slider
+  class="example-margin"
+  [disabled]="false"
+  [max]="1"
+  [min]="0"
+  [step]="0.1">
+  <input matSliderThumb [(ngModel)]="price">
+</mat-slider>
 
 <button (click)="getActivityByPriceClick()">Get Activity by Price</button>
 
