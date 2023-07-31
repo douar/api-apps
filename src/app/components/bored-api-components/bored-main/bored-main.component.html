@@ -58,3 +58,29 @@
 <div *ngIf="activityByPrice.activity !== ''">
   {{activityByPrice | json}}
 </div>
+
+<mat-form-field>
+  <mat-label>Enter a Number (0-1)</mat-label>
+  <input matInput placeholder="minPrice" type="number" min="0" max="1" [(ngModel)]="minPrice">
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Enter a Number (0-1)</mat-label>
+  <input matInput placeholder="maxPrice" type="number" min="0" max="1" [(ngModel)]="maxPrice">
+</mat-form-field>
+
+<mat-slider
+  class="example-margin"
+  [disabled]="false"
+  [max]="1"
+  [min]="0"
+  [step]="0.1">
+  <input matSliderStartThumb [(ngModel)]="minPrice">
+  <input matSliderEndThumb [(ngModel)]="maxPrice">
+</mat-slider>
+
+<button (click)="getActivityByPriceRangeClick()">Get Activity by Price Range</button>
+
+<div *ngIf="activityByPriceRange.activity !== ''">
+  {{activityByPriceRange | json}}
+</div>

@@ -57,17 +57,27 @@ export class BoredMainComponent implements OnDestroy{
     accessibility: 0
   }
   price: number = 0;
+  subActivityByPriceRange!: Subscription;
+  activityByPriceRange: IBoredActivity = {
+    activity: '',
+    type: '',
+    participants: 0,
+    price: 0,
+    link: '',
+    key: '',
+    accessibility: 0
+  }
+  minPrice: number = 0;
+  maxPrice: number = 1;
 
   constructor(private boredService: BoredServiceService) {}
 
   getRandomActivityClick() {
-    console.log('clicked')
     this.boredService.getRandomActivity()
     this.subRandomActivity = this.boredService.$randomActivity.subscribe(activity => {
       this.randomActivity = <IBoredActivity>activity
     })
   }
-
   getActivityByTypeClick() {
     if(this.selectedActivityType == null || undefined){
       return alert('Please select an activity type for this function')
@@ -78,7 +88,6 @@ export class BoredMainComponent implements OnDestroy{
       })
     }
   }
-
   getActivityByParticipantCountClick() {
     if(this.participantCount == null || undefined){
       return alert('Please enter a number first')
@@ -89,18 +98,23 @@ export class BoredMainComponent implements OnDestroy{
       })
     }
   }
+  getActivityByPriceClick() {
+    this.boredService.getActivityByPrice(this.price)
+    this.subActivityByPrice = this.boredService.$activityByPrice.subscribe(activity => {
+      this.activityByPrice = <IBoredActivity>activity
+    })
+  }
+  getActivityByPriceRangeClick() {
+    this.boredService.getActivityByPriceRange(this.minPrice, this.maxPrice)
+    this.subActivityByPriceRange = this.boredService.$activityByPrinceRange.subscribe(activity => {
+      this.activityByPriceRange = <IBoredActivity>activity
+    })
+  }
   ngOnDestroy() {
     this.subRandomActivity.unsubscribe()
     this.subActivityByType.unsubscribe()
     this.subActivityByParticipantCount.unsubscribe()
-  }
-
-  getActivityByPriceClick() {
-    console.log('get activity by price clicked', this.price)
-    this.boredService.getActivityByPrice(this.price)
-    this.subActivityByPrice = this.boredService.$activityByPrice.subscribe(activity => {
-      this.activityByPrice = <IBoredActivity>activity
-      console.log(this.activityByPrice)
-    })
+    this.subActivityByPrice.unsubscribe()
+    this.subActivityByPriceRange.unsubscribe()
   }
 }

@@ -14,17 +14,16 @@ export class BoredHttpService {
   getRandomActivity(){
     return this.httpClient.get('https://www.boredapi.com/api/activity/') as Observable<IBoredActivity>
   }
-
   getActivityByType(activityType: string){
     return this.httpClient.get(`https://www.boredapi.com/api/activity?type=${activityType}`) as Observable<IBoredActivity>
   }
-
   getActivityByParticipantCount(participants: number){
     return this.httpClient.get(`https://www.boredapi.com/api/activity?participants=${participants}`) as Observable<IBoredActivity | IBoredError>
   }
-
   getActivityByPrice(price: number) {
-    console.log('get activity by price http')
     return this.httpClient.get(`https://www.boredapi.com/api/activity?price=${price}`) as Observable<IBoredActivity | IBoredError>
+  }
+  getActivityByPriceRange(minPrice: number, maxPrice: number){
+    return this.httpClient.get(`https://www.boredapi.com/api/activity?minprice=${minPrice}&maxprice=${maxPrice}`) as Observable<IBoredActivity | IBoredError>
   }
 }
