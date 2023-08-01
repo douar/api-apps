@@ -1,86 +1,207 @@
-<button (click)="getRandomActivityClick()">Get Random Activity</button>
-
-<div *ngIf="randomActivity.activity !== ''">
-  {{randomActivity | json}}
+<div class="container">
+    <div class="col-2">
+      <button (click)="getRandomActivityClick()">Get Random Activity</button>
+    </div>
+    <div class="col">
+      <div class="label-container">
+        <div class="label">Activity:</div>
+        <div class="result">{{randomActivity.activity}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Type:</div>
+        <div class="result">{{randomActivity.type}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Participants:</div>
+        <div class="result" *ngIf="randomActivity.participants !==0">{{randomActivity.participants}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Price:</div>
+        <div class="result">{{randomActivity.price}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Accessibility:</div>
+        <div class="result">{{randomActivity.accessibility}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Link:</div>
+        <div class="result">{{randomActivity.link}}</div>
+      </div>
+    </div>
 </div>
 
-<div>
-  {{randomActivity.activity}}
+<div class="container">
+  <div class="col-2">
+    <mat-form-field>
+      <mat-label>Select Activity Type</mat-label>
+      <mat-select [(value)]="selectedActivityType">
+        <mat-option *ngFor="let opt of activityTypeList" [value]="opt">
+          {{opt}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="getActivityByTypeClick()">Get Activity by Type</button>
+  </div>
+  <div class="col">
+    <div class="label-container">
+      <div class="label">Activity:</div>
+      <div class="result">{{activityByType.activity}}</div>
+    </div>
+    <div class="label-container">
+      <div class="label">Type:</div>
+      <div class="result">{{activityByType.type}}</div>
+    </div>
+    <div class="label-container">
+      <div class="label">Participants:</div>
+      <div class="result" *ngIf="activityByType.participants !==0">{{activityByType.participants}}</div>
+    </div>
+    <div class="label-container">
+      <div class="label">Price:</div>
+      <div class="result">{{activityByType.price}}</div>
+    </div>
+    <div class="label-container">
+      <div class="label">Accessibility:</div>
+      <div class="result">{{activityByType.accessibility}}</div>
+    </div>
+    <div class="label-container">
+      <div class="label">Link:</div>
+      <div class="result">{{activityByType.link}}</div>
+    </div>
+  </div>
 </div>
 
-<hr>
-
-<mat-form-field>
-  <mat-label>Select Activity Type</mat-label>
-  <mat-select [(value)]="selectedActivityType">
-    <mat-option *ngFor="let opt of activityTypeList" [value]="opt">
-      {{opt}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-
-<button (click)="getActivityByTypeClick()">Get Activity by Type</button>
-
-<div *ngIf="activityByType.activity !== ''">
-  {{activityByType | json}}
+<div class="container">
+  <div class="col-2">
+    <mat-form-field>
+      <input matInput placeholder="Number of Participants" type="number" [(ngModel)]="participantCount">
+    </mat-form-field>
+    <button (click)="getActivityByParticipantCountClick()">Get Activity by Participant Count</button>
+  </div>
+  <div class="col">
+    <div class="col">
+      <div class="label-container">
+        <div class="label">Activity:</div>
+        <div class="result">{{activityByParticipantCount.activity}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Type:</div>
+        <div class="result">{{activityByParticipantCount.type}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Participants:</div>
+        <div class="result" *ngIf="activityByParticipantCount.participants !==0">{{activityByParticipantCount.participants}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Price:</div>
+        <div class="result">{{activityByParticipantCount.price}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Accessibility:</div>
+        <div class="result">{{activityByParticipantCount.accessibility}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Link:</div>
+        <div class="result">{{activityByParticipantCount.link}}</div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<hr>
-
-<mat-form-field>
-  <input matInput placeholder="Number of Participants" type="number" [(ngModel)]="participantCount">
-</mat-form-field>
-
-<button (click)="getActivityByParticipantCountClick()">Get Activity by Participant Count</button>
-
-<div *ngIf="activityByParticipantCount.activity !== ''">
-  {{activityByParticipantCount | json}}
+<div class="container">
+  <div class="col-2">
+    <mat-form-field>
+      <mat-label>Enter a Number (0-1)</mat-label>
+      <input matInput placeholder="Price" type="number" min="0" max="1" [(ngModel)]="price">
+    </mat-form-field>
+    <mat-slider
+      class="example-margin"
+      [disabled]="false"
+      [max]="1"
+      [min]="0"
+      [step]="0.1">
+      <input matSliderThumb [(ngModel)]="price">
+    </mat-slider>
+    <button (click)="getActivityByPriceClick()">Get Activity by Price</button>
+  </div>
+  <div class="col">
+    <div class="col">
+      <div class="label-container">
+        <div class="label">Activity:</div>
+        <div class="result">{{activityByPrice.activity}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Type:</div>
+        <div class="result">{{activityByPrice.type}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Participants:</div>
+        <div class="result" *ngIf="activityByPrice.participants !==0">{{activityByPrice.participants}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Price:</div>
+        <div class="result">{{activityByPrice.price}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Accessibility:</div>
+        <div class="result">{{activityByPrice.accessibility}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Link:</div>
+        <div class="result">{{activityByPrice.link}}</div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<hr>
-
-<mat-form-field>
-  <mat-label>Enter a Number (0-1)</mat-label>
-  <input matInput placeholder="Price" type="number" min="0" max="1" [(ngModel)]="price">
-</mat-form-field>
-
-<mat-slider
-  class="example-margin"
-  [disabled]="false"
-  [max]="1"
-  [min]="0"
-  [step]="0.1">
-  <input matSliderThumb [(ngModel)]="price">
-</mat-slider>
-
-<button (click)="getActivityByPriceClick()">Get Activity by Price</button>
-
-<div *ngIf="activityByPrice.activity !== ''">
-  {{activityByPrice | json}}
+<div class="container">
+  <div class="col-2">
+    <mat-form-field>
+      <mat-label>Enter a Min Price (0-1)</mat-label>
+      <input matInput placeholder="minPrice" type="number" min="0" max="1" [(ngModel)]="minPrice">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Enter a Max Price (0-1)</mat-label>
+      <input matInput placeholder="maxPrice" type="number" min="0" max="1" [(ngModel)]="maxPrice">
+    </mat-form-field>
+    <mat-slider
+      class="example-margin"
+      [disabled]="false"
+      [max]="1"
+      [min]="0"
+      [step]="0.1">
+      <input matSliderStartThumb [(ngModel)]="minPrice">
+      <input matSliderEndThumb [(ngModel)]="maxPrice">
+    </mat-slider>
+    <button (click)="getActivityByPriceRangeClick()">Get Activity by Price Range</button>
+  </div>
+  <div class="col">
+    <div class="col">
+      <div class="label-container">
+        <div class="label">Activity:</div>
+        <div class="result">{{activityByPriceRange.activity}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Type:</div>
+        <div class="result">{{activityByPriceRange.type}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Participants:</div>
+        <div class="result" *ngIf="activityByPriceRange.participants !==0">{{activityByPriceRange.participants}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Price:</div>
+        <div class="result">{{activityByPriceRange.price}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Accessibility:</div>
+        <div class="result">{{activityByPriceRange.accessibility}}</div>
+      </div>
+      <div class="label-container">
+        <div class="label">Link:</div>
+        <div class="result">{{activityByPriceRange.link}}</div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<mat-form-field>
-  <mat-label>Enter a Number (0-1)</mat-label>
-  <input matInput placeholder="minPrice" type="number" min="0" max="1" [(ngModel)]="minPrice">
-</mat-form-field>
 
-<mat-form-field>
-  <mat-label>Enter a Number (0-1)</mat-label>
-  <input matInput placeholder="maxPrice" type="number" min="0" max="1" [(ngModel)]="maxPrice">
-</mat-form-field>
-
-<mat-slider
-  class="example-margin"
-  [disabled]="false"
-  [max]="1"
-  [min]="0"
-  [step]="0.1">
-  <input matSliderStartThumb [(ngModel)]="minPrice">
-  <input matSliderEndThumb [(ngModel)]="maxPrice">
-</mat-slider>
-
-<button (click)="getActivityByPriceRangeClick()">Get Activity by Price Range</button>
-
-<div *ngIf="activityByPriceRange.activity !== ''">
-  {{activityByPriceRange | json}}
-</div>
