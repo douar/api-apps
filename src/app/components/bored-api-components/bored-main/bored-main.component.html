@@ -1,0 +1,242 @@
+
+
+<div class="box">
+
+<!--  <div class="nav-container">-->
+<!--    <span><a href="#random">Random</a></span>-->
+<!--    <span><a href="#type">Type</a></span>-->
+<!--    <span><a href="#participant">Participant</a></span>-->
+<!--    <span><a href="#price">Price</a></span>-->
+<!--    <span><a href="#price-range">Price-Range</a></span>-->
+<!--  </div>-->
+
+  <div class="welcome-container">
+    <h1>Bored? Let's find something to do!</h1>
+    <p>The <a href="https://www.boredapi.com/" target="_blank">Bored API</a>
+      is a database of activities, and we tap into that to give you a random activity suggestion.
+      <br>You can get random activity suggestions by pure randomness, by activity type (recreational, educational, etc),
+      participant count, price, or price-range.
+    </p>
+    NOTICE:
+    <p>Some activity suggestions will have a link to provide more information, some may not have one.</p>
+  </div>
+
+  <div class="content-container">
+    <div class="section" id="random">
+      <div class="col-3">
+        <p>Get a Random Activity Suggestion</p>
+        <button mat-raised-button color="primary" (click)="getRandomActivityClick()">Get Random Activity</button>
+      </div>
+      <div class="col">
+        <div class="label-container">
+          <div class="label">Activity:</div>
+          <div class="result">{{randomActivity.activity}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Type:</div>
+          <div class="result">{{randomActivity.type}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Participants:</div>
+          <div class="result" *ngIf="randomActivity.participants !==0">{{randomActivity.participants}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Price:</div>
+          <div class="result">{{randomActivity.price}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Accessibility:</div>
+          <div class="result">{{randomActivity.accessibility}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Link:</div>
+          <div class="result"><a href="{{randomActivity.link}}" target="_blank">{{randomActivity.link}}</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="type">
+      <div class="col-3">
+        <p>Get a Random Activity Suggestion by Type of Activity</p>
+        <mat-form-field>
+          <mat-label>Select Activity Type</mat-label>
+          <mat-select [(value)]="selectedActivityType">
+            <mat-option *ngFor="let opt of activityTypeList" [value]="opt">
+              {{opt}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="getActivityByTypeClick()">Get Activity by Type</button>
+      </div>
+      <div class="col">
+        <div class="label-container">
+          <div class="label">Activity:</div>
+          <div class="result">{{activityByType.activity}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Type:</div>
+          <div class="result">{{activityByType.type}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Participants:</div>
+          <div class="result" *ngIf="activityByType.participants !==0">{{activityByType.participants}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Price:</div>
+          <div class="result">{{activityByType.price}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Accessibility:</div>
+          <div class="result">{{activityByType.accessibility}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Link:</div>
+          <div class="result"><a href="{{activityByType.link}}" target="_blank">{{activityByType.link}}</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="participant">
+      <div class="col-3">
+        <p>Get a Random Activity Suggestion by Number of Participants</p>
+        <mat-form-field>
+          <input matInput placeholder="Enter Number of Participants" type="number" [(ngModel)]="participantCount">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="getActivityByParticipantCountClick()">Get Activity by Participant Count</button>
+      </div>
+      <div class="col">
+          <div class="label-container">
+            <div class="label">Activity:</div>
+            <div class="result">{{activityByParticipantCount.activity}}</div>
+          </div>
+          <div class="label-container">
+            <div class="label">Type:</div>
+            <div class="result">{{activityByParticipantCount.type}}</div>
+          </div>
+          <div class="label-container">
+            <div class="label">Participants:</div>
+            <div class="result" *ngIf="activityByParticipantCount.participants !==0">{{activityByParticipantCount.participants}}</div>
+          </div>
+          <div class="label-container">
+            <div class="label">Price:</div>
+            <div class="result">{{activityByParticipantCount.price}}</div>
+          </div>
+          <div class="label-container">
+            <div class="label">Accessibility:</div>
+            <div class="result">{{activityByParticipantCount.accessibility}}</div>
+          </div>
+          <div class="label-container">
+            <div class="label">Link:</div>
+            <div class="result"><a href="{{activityByParticipantCount.link}}" target="_blank">{{activityByParticipantCount.link}}</a></div>
+          </div>
+        </div>
+    </div>
+
+    <div class="section" id="price">
+      <div class="col-3">
+        <p>Get a Random Activity Suggestion by a Price (0-1)</p>
+        <p>0 = No cost<br>1 = More Costly</p>
+        <mat-form-field>
+          <mat-label>Enter a Number (0-1)</mat-label>
+          <input matInput placeholder="Price" type="number" min="0" max="1" [(ngModel)]="price">
+        </mat-form-field>
+        <mat-slider
+          class="example-margin"
+          [disabled]="false"
+          [max]="1"
+          [min]="0"
+          [step]="0.1">
+          <input matSliderThumb [(ngModel)]="price">
+        </mat-slider>
+        <button mat-raised-button color="primary" (click)="getActivityByPriceClick()">Get Activity by Price</button>
+      </div>
+      <div class="col">
+          <div class="label-container">
+            <div class="label">Activity:</div>
+            <div class="result">{{activityByPrice.activity}}</div>
+          </div>
+          <div class="label-container">
+            <div class="label">Type:</div>
+            <div class="result">{{activityByPrice.type}}</div>
+          </div>
+          <div class="label-container">
+            <div class="label">Participants:</div>
+            <div class="result" *ngIf="activityByPrice.participants !==0">{{activityByPrice.participants}}</div>
+          </div>
+          <div class="label-container">
+            <div class="label">Price:</div>
+            <div class="result">{{activityByPrice.price}}</div>
+          </div>
+          <div class="label-container">
+            <div class="label">Accessibility:</div>
+            <div class="result">{{activityByPrice.accessibility}}</div>
+          </div>
+          <div class="label-container">
+            <div class="label">Link:</div>
+            <div class="result"><a href="{{activityByPrice.link}}" target="_blank">{{activityByPrice.link}}</a></div>
+          </div>
+        </div>
+    </div>
+
+    <div class="section" id="price-range">
+      <div class="col-3">
+        <p>Get a Random Activity Suggestion by Price (0-1)</p>
+        <p>0 = No cost<br>1 = More Costly</p>
+        <mat-form-field>
+          <mat-label>Enter a Min Price (0-1)</mat-label>
+          <input matInput placeholder="minPrice" type="number" min="0" max="1" [(ngModel)]="minPrice">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Enter a Max Price (0-1)</mat-label>
+          <input matInput placeholder="maxPrice" type="number" min="0" max="1" [(ngModel)]="maxPrice">
+        </mat-form-field>
+        <mat-slider
+          class="example-margin"
+          [disabled]="false"
+          [max]="1"
+          [min]="0"
+          [step]="0.1">
+          <input matSliderStartThumb [(ngModel)]="minPrice">
+          <input matSliderEndThumb [(ngModel)]="maxPrice">
+        </mat-slider>
+        <button mat-raised-button color="primary" (click)="getActivityByPriceRangeClick()">Get Activity by Price Range</button>
+      </div>
+      <div class="col">
+        <div class="label-container">
+          <div class="label">Activity:</div>
+          <div class="result">{{activityByPriceRange.activity}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Type:</div>
+          <div class="result">{{activityByPriceRange.type}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Participants:</div>
+          <div class="result" *ngIf="activityByPriceRange.participants !==0">{{activityByPriceRange.participants}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Price:</div>
+          <div class="result">{{activityByPriceRange.price}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Accessibility:</div>
+          <div class="result">{{activityByPriceRange.accessibility}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Link:</div>
+          <div class="result"><a href="{{activityByPriceRange.link}}" target="_blank">{{activityByPriceRange.link}}</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span><a href="https://github.com/douar/api-apps/tree/bored-api" target="_blank">Project Repository</a></span>
+    <span>|</span>
+    <span>UI Created by <a href="https://douar.github.io/douarmoua_portfolio/" target="_blank">Douar Moua</a></span>
+    <span>|</span>
+    <span><a href="https://www.boredapi.com/documentation" target="_blank">Bored API Documentation</a></span>
+  </div>
+</div>
+
+
