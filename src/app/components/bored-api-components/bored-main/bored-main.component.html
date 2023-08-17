@@ -105,7 +105,6 @@
         <button mat-raised-button color="primary" (click)="getActivityByParticipantCountClick()">Get Activity by Participant Count</button>
       </div>
       <div class="col">
-        <div class="col">
           <div class="label-container">
             <div class="label">Activity:</div>
             <div class="result">{{activityByParticipantCount.activity}}</div>
@@ -131,7 +130,6 @@
             <div class="result"><a href="{{activityByParticipantCount.link}}" target="_blank">{{activityByParticipantCount.link}}</a></div>
           </div>
         </div>
-      </div>
     </div>
 
     <div class="section" id="price">
@@ -153,7 +151,6 @@
         <button mat-raised-button color="primary" (click)="getActivityByPriceClick()">Get Activity by Price</button>
       </div>
       <div class="col">
-        <div class="col">
           <div class="label-container">
             <div class="label">Activity:</div>
             <div class="result">{{activityByPrice.activity}}</div>
@@ -179,7 +176,6 @@
             <div class="result"><a href="{{activityByPrice.link}}" target="_blank">{{activityByPrice.link}}</a></div>
           </div>
         </div>
-      </div>
     </div>
 
     <div class="section" id="price-range">
@@ -206,31 +202,29 @@
         <button mat-raised-button color="primary" (click)="getActivityByPriceRangeClick()">Get Activity by Price Range</button>
       </div>
       <div class="col">
-        <div class="col">
-          <div class="label-container">
-            <div class="label">Activity:</div>
-            <div class="result">{{activityByPriceRange.activity}}</div>
-          </div>
-          <div class="label-container">
-            <div class="label">Type:</div>
-            <div class="result">{{activityByPriceRange.type}}</div>
-          </div>
-          <div class="label-container">
-            <div class="label">Participants:</div>
-            <div class="result" *ngIf="activityByPriceRange.participants !==0">{{activityByPriceRange.participants}}</div>
-          </div>
-          <div class="label-container">
-            <div class="label">Price:</div>
-            <div class="result">{{activityByPriceRange.price}}</div>
-          </div>
-          <div class="label-container">
-            <div class="label">Accessibility:</div>
-            <div class="result">{{activityByPriceRange.accessibility}}</div>
-          </div>
-          <div class="label-container">
-            <div class="label">Link:</div>
-            <div class="result"><a href="{{activityByPriceRange.link}}" target="_blank">{{activityByPriceRange.link}}</a></div>
-          </div>
+        <div class="label-container">
+          <div class="label">Activity:</div>
+          <div class="result">{{activityByPriceRange.activity}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Type:</div>
+          <div class="result">{{activityByPriceRange.type}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Participants:</div>
+          <div class="result" *ngIf="activityByPriceRange.participants !==0">{{activityByPriceRange.participants}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Price:</div>
+          <div class="result">{{activityByPriceRange.price}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Accessibility:</div>
+          <div class="result">{{activityByPriceRange.accessibility}}</div>
+        </div>
+        <div class="label-container">
+          <div class="label">Link:</div>
+          <div class="result"><a href="{{activityByPriceRange.link}}" target="_blank">{{activityByPriceRange.link}}</a></div>
         </div>
       </div>
     </div>
