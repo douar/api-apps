@@ -1,37 +1,39 @@
 <div class="container">
-    <div class="col-2">
-      <button (click)="getRandomActivityClick()">Get Random Activity</button>
+  <div class="col-3">
+    <p>Get a Random Activity Suggestion</p>
+    <button mat-raised-button color="primary" (click)="getRandomActivityClick()">Get Random Activity</button>
+  </div>
+  <div class="col">
+    <div class="label-container">
+      <div class="label">Activity:</div>
+      <div class="result">{{randomActivity.activity}}</div>
     </div>
-    <div class="col">
-      <div class="label-container">
-        <div class="label">Activity:</div>
-        <div class="result">{{randomActivity.activity}}</div>
-      </div>
-      <div class="label-container">
-        <div class="label">Type:</div>
-        <div class="result">{{randomActivity.type}}</div>
-      </div>
-      <div class="label-container">
-        <div class="label">Participants:</div>
-        <div class="result" *ngIf="randomActivity.participants !==0">{{randomActivity.participants}}</div>
-      </div>
-      <div class="label-container">
-        <div class="label">Price:</div>
-        <div class="result">{{randomActivity.price}}</div>
-      </div>
-      <div class="label-container">
-        <div class="label">Accessibility:</div>
-        <div class="result">{{randomActivity.accessibility}}</div>
-      </div>
-      <div class="label-container">
-        <div class="label">Link:</div>
-        <div class="result">{{randomActivity.link}}</div>
-      </div>
+    <div class="label-container">
+      <div class="label">Type:</div>
+      <div class="result">{{randomActivity.type}}</div>
     </div>
+    <div class="label-container">
+      <div class="label">Participants:</div>
+      <div class="result" *ngIf="randomActivity.participants !==0">{{randomActivity.participants}}</div>
+    </div>
+    <div class="label-container">
+      <div class="label">Price:</div>
+      <div class="result">{{randomActivity.price}}</div>
+    </div>
+    <div class="label-container">
+      <div class="label">Accessibility:</div>
+      <div class="result">{{randomActivity.accessibility}}</div>
+    </div>
+    <div class="label-container">
+      <div class="label">Link:</div>
+      <div class="result"><a href="{{randomActivity.link}}" target="_blank">{{randomActivity.link}}</a></div>
+    </div>
+  </div>
 </div>
 
 <div class="container">
-  <div class="col-2">
+  <div class="col-3">
+    <p>Get a Random Activity Suggestion by Type of Activity</p>
     <mat-form-field>
       <mat-label>Select Activity Type</mat-label>
       <mat-select [(value)]="selectedActivityType">
@@ -40,7 +42,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button (click)="getActivityByTypeClick()">Get Activity by Type</button>
+    <button mat-raised-button color="primary" (click)="getActivityByTypeClick()">Get Activity by Type</button>
   </div>
   <div class="col">
     <div class="label-container">
@@ -65,17 +67,17 @@
     </div>
     <div class="label-container">
       <div class="label">Link:</div>
-      <div class="result">{{activityByType.link}}</div>
+      <div class="result"><a href="{{randomActivity.link}}" target="_blank">{{randomActivity.link}}</a></div>
     </div>
   </div>
 </div>
 
 <div class="container">
-  <div class="col-2">
+  <div class="col-3">
     <mat-form-field>
       <input matInput placeholder="Number of Participants" type="number" [(ngModel)]="participantCount">
     </mat-form-field>
-    <button (click)="getActivityByParticipantCountClick()">Get Activity by Participant Count</button>
+    <button mat-raised-button color="primary" (click)="getActivityByParticipantCountClick()">Get Activity by Participant Count</button>
   </div>
   <div class="col">
     <div class="col">
@@ -101,14 +103,14 @@
       </div>
       <div class="label-container">
         <div class="label">Link:</div>
-        <div class="result">{{activityByParticipantCount.link}}</div>
+        <div class="result"><a href="{{randomActivity.link}}" target="_blank">{{randomActivity.link}}</a></div>
       </div>
     </div>
   </div>
 </div>
 
 <div class="container">
-  <div class="col-2">
+  <div class="col-3">
     <mat-form-field>
       <mat-label>Enter a Number (0-1)</mat-label>
       <input matInput placeholder="Price" type="number" min="0" max="1" [(ngModel)]="price">
@@ -121,7 +123,7 @@
       [step]="0.1">
       <input matSliderThumb [(ngModel)]="price">
     </mat-slider>
-    <button (click)="getActivityByPriceClick()">Get Activity by Price</button>
+    <button mat-raised-button color="primary" (click)="getActivityByPriceClick()">Get Activity by Price</button>
   </div>
   <div class="col">
     <div class="col">
@@ -147,14 +149,14 @@
       </div>
       <div class="label-container">
         <div class="label">Link:</div>
-        <div class="result">{{activityByPrice.link}}</div>
+        <div class="result"><a href="{{randomActivity.link}}" target="_blank">{{randomActivity.link}}</a></div>
       </div>
     </div>
   </div>
 </div>
 
 <div class="container">
-  <div class="col-2">
+  <div class="col-3">
     <mat-form-field>
       <mat-label>Enter a Min Price (0-1)</mat-label>
       <input matInput placeholder="minPrice" type="number" min="0" max="1" [(ngModel)]="minPrice">
@@ -172,7 +174,7 @@
       <input matSliderStartThumb [(ngModel)]="minPrice">
       <input matSliderEndThumb [(ngModel)]="maxPrice">
     </mat-slider>
-    <button (click)="getActivityByPriceRangeClick()">Get Activity by Price Range</button>
+    <button mat-raised-button color="primary" (click)="getActivityByPriceRangeClick()">Get Activity by Price Range</button>
   </div>
   <div class="col">
     <div class="col">
@@ -198,10 +200,8 @@
       </div>
       <div class="label-container">
         <div class="label">Link:</div>
-        <div class="result">{{activityByPriceRange.link}}</div>
+        <div class="result"><a href="{{randomActivity.link}}" target="_blank">{{randomActivity.link}}</a></div>
       </div>
     </div>
   </div>
 </div>
-
-
